@@ -1,0 +1,5 @@
+{
+    "code-runner.executorMapByGlob": {
+        "*": "meson compile main -C build #"
+    }
+}
