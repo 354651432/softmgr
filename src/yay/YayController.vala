@@ -37,7 +37,7 @@ public class YayController : Object, IController {
         var arr = output.split("\n");
         for (int i = 0; i < arr.length; i += 2) {
             var arr1 = arr[i].split(" ", 2);
-            if (arr1.length <= 2) {
+            if (arr1.length < 2) {
                 continue;
             }
             var name = arr1[0];

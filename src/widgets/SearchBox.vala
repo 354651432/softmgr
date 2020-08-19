@@ -15,6 +15,7 @@ public class SearchBox : Gtk.ScrolledWindow {
             foreach (Soft soft in Soft.search(keyword.strip())) {
                 vbox.pack_start(new SearchItem(soft));
             }
+            vbox.show_all();
         });
     }
 }
