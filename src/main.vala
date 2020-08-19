@@ -5,8 +5,9 @@ int main(string[] args) {
         if (win == null) {
             win = new ApplicationWindow(app);
         }
-        win.present();
+        win.show_all();
     });
 
+    Soft.bindController(new YayController());
     return app.run(args);
 }
