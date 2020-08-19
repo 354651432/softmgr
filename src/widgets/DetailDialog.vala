@@ -5,7 +5,7 @@ public class DetailDialog : Gtk.Dialog {
         Object(
             visible: true,
             soft: soft,
-            width_request: 300,
+            width_request: 500,
             height_request: 180,
             title: @"$(soft.softId) detail"
         );
@@ -17,10 +17,15 @@ public class DetailDialog : Gtk.Dialog {
         var store = new Gtk.ListStore(2, typeof (string), typeof (string));
         tree.set_model(store);
         tree.insert_column_with_attributes(-1, "Field", new Gtk.CellRendererText(), "text", 0);
-        tree.insert_column_with_attributes(-1, "Value", new Gtk.CellRendererText(), "text", 1);
+        var textRender = new Gtk.CellRendererText();
+        textRender.ellipsize = Pango.EllipsizeMode.END;
+        tree.insert_column_with_attributes(-1, "Value", textRender, "text", 1);
 
         Gtk.TreeIter it;
         foreach (var it1 in soft.detail) {
+            if (it1.key.strip() == "") {
+                continue;
+            }
             store.append(out it);
             store.set(it, 0, it1.key, 1, it1.value);
         }

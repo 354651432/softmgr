@@ -10,7 +10,11 @@ public class InstalledItem : Gtk.Box {
         );
 
         modify_bg(Gtk.StateType.NORMAL, parseColor("#ffffff"));
-        pack_start(new Gtk.Label(soft.intro), false);
+
+        var label = new Gtk.Label(soft.intro);
+        label.set_line_wrap(true);
+        label.set_line_wrap_mode(Pango.WrapMode.CHAR);
+        pack_start(label, false);
         pack_end(installButton, false);
 
         Gtk.Button detailBUtton = new Gtk.Button.from_icon_name("dialog-information");

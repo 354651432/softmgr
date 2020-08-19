@@ -1,34 +1,20 @@
-public class SearchBox : Gtk.Box {
+public class SearchBox : Gtk.ScrolledWindow {
     public Gtk.Entry entry { set; get; }
-
     public SearchWidget searchWidget { set; get; }
-
+    Gtk.Box vbox;
     public SearchBox() {
         Object(
-            orientation: Gtk.Orientation.VERTICAL,
             entry: new Gtk.Entry(),
-            homogeneous: false,
-            valign: Gtk.Align.START,
-            margin: 3,
-            spacing: 3,
-
             searchWidget: new SearchWidget()
         );
+        vbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 3);
+        add_with_viewport(vbox);
 
-        pack_start(searchWidget);
-        addListView();
-    }
-
-    void addListView() {
-        var scrollWin = new Gtk.ScrolledWindow(null, null);
-        scrollWin.height_request = 300;
-        pack_start(scrollWin, true, true);
-
-        var listBox = new Gtk.Box(Gtk.Orientation.VERTICAL, 3);
-        scrollWin.add_with_viewport(listBox);
-
-        foreach (Soft soft in Soft.installed()) {
-            listBox.add(new SearchItem(soft));
-        }
+        vbox.pack_start(searchWidget);
+        searchWidget.onSearch.connect((sender, keyword) => {
+            foreach (Soft soft in Soft.search(keyword.strip())) {
+                vbox.pack_start(new SearchItem(soft));
+            }
+        });
     }
 }
