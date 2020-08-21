@@ -21,5 +21,7 @@ public class SearchWidget : Gtk.Box {
         button.clicked.connect(() => {
             onSearch(entry.get_text());
         });
+
+        get_style_context().add_class("search-widget");
     }
 }

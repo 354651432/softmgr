@@ -14,6 +14,8 @@ public class InstalledItem : Gtk.Box {
         var label = new Gtk.Label(soft.intro);
         label.set_line_wrap(true);
         label.set_line_wrap_mode(Pango.WrapMode.CHAR);
+        label.get_style_context().add_class("header");
+        addIcon();
         pack_start(label, false);
         pack_end(uninstallButton, false);
 
@@ -33,5 +35,12 @@ public class InstalledItem : Gtk.Box {
         Gdk.Color.parse(spec, out ret);
 
         return ret;
+    }
+
+    void addIcon() {
+        var icon = new Gtk.Image();
+        icon.gicon = new ThemedIcon(soft.icon);
+        icon.margin = 10;
+        pack_start(icon, false);
     }
 }

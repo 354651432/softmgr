@@ -43,14 +43,16 @@ public class SearchItem : Gtk.Box {
 
         var header = new Gtk.Label(soft.header);
         header.halign = Gtk.Align.START;
+        header.get_style_context().add_class("header");
         hbox.pack_start(header);
         hbox.pack_start(label, false);
     }
 
     void logo() {
-        var img = new Gtk.Image.from_icon_name("application-default-icon", Gtk.IconSize.DND);
-        img.margin = 10;
-        pack_start(img, false);
+        var icon = new Gtk.Image();
+        icon.gicon = new ThemedIcon(soft.icon);
+        icon.margin = 10;
+        pack_start(icon, false);
     }
 
     Gdk.Color parseColor(string spec) {

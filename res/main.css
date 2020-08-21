@@ -1,0 +1,15 @@
+window {
+    /* background: red; */
+}
+
+label {
+    font-size: 14px;
+}
+
+label.header {
+    font-size: 20px;
+}
+
+.search-widget entry {
+    padding: 7;
+}

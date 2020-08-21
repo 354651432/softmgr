@@ -8,4 +8,6 @@ public interface IController : Object {
     public abstract Gee.HashMap<string, string> detail(string softId);
 
     public abstract Gee.HashMap<string, string> installDetail(string softId);
+
+    public abstract string ? getIcon(string softId);
 }

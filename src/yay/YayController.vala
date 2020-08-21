@@ -87,8 +87,24 @@ public class YayController : Object, IController {
 
     string exec(string cmd) {
         string output;
-        Process.spawn_command_line_sync(cmd, out output);
+        try {
+            Process.spawn_command_line_sync(cmd, out output);
+        } catch (Error err) {
+            output = err.message;
+        }
 
         return output.strip();
+    }
+
+    public string ? getIcon(string softId) {
+        var files = exec("yay -Ql $(softId)").split("\n");
+        string desktopFile;
+        foreach (string file in files) {
+            // if (file.contains(".desktop")) {
+            // File.
+            // }
+        }
+
+        return null;
     }
 }

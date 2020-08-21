@@ -35,5 +35,9 @@ public class ApplicationWindow : Gtk.ApplicationWindow {
         headerBar.custom_title = switcher;
         stack.add_titled(new SearchBox(), "search", "search");
         stack.add_titled(new InstalledBox(), "installed", "installed");
+
+        var provider = new Gtk.CssProvider();
+        provider.load_from_resource("/res/main.css");
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 }

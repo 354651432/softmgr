@@ -2,6 +2,11 @@ public class Soft : Object {
     public string softId { set; get; }
     public string header { set; get; }
     public string intro { set; get; }
+    public string ? icon {
+        owned get {
+            return controller.getIcon(softId) ?? "applications-system";
+        }
+    }
     public Gee.HashMap<string, string> detail {
         owned get {
             return controller.detail(softId);
