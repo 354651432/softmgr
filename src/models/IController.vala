@@ -1,6 +1,6 @@
 public interface IController : Object {
-    public abstract void install(string softId);
-    public abstract void uninstall(string softId);
+    public abstract string install(string softId);
+    public abstract string uninstall(string softId);
 
     public abstract List<Soft> installed();
     public abstract List<Soft> search(string keyword);

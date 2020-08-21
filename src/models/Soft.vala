@@ -20,12 +20,12 @@ public class Soft : Object {
 
     public static IController controller { set; get; }
 
-    public void install() {
-        controller.install(softId);
+    public string install() {
+        return controller.install(softId);
     }
 
-    public void uninstall() {
-        controller.uninstall(softId);
+    public string uninstall() {
+        return controller.uninstall(softId);
     }
 
     public static void bindController(IController controller) {

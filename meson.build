@@ -13,6 +13,7 @@ target = executable(meson.project_name(),[
         'src/widgets/SearchItem.vala',
         'src/widgets/InstalledItem.vala',
         'src/widgets/DetailDialog.vala',
+        'src/widgets/MessageDialog.vala',
 
         'src/models/IController.vala',
         'src/models/Soft.vala',

@@ -20,7 +20,9 @@ public class SearchItem : Gtk.Box {
         pack_end(detailButton, false);
 
         installButton.clicked.connect(() => {
-            soft.install();
+            string message = soft.install();
+            var dialog = new MessageDialog("install", message);
+            dialog.showDialog();
         });
         detailButton.clicked.connect(() => {
             var diloag = new DetailDialog(soft);

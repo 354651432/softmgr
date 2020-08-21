@@ -1,10 +1,11 @@
 public class YayController : Object, IController {
-    public void install(string softId) {
-        stdout.printf("installing %s\n", softId);
+    public string install(string softId) {
+        return exec(@"yay -S \"$(softId)\" --noconfirm");
     }
 
-    public void uninstall(string softId) {
-        stdout.printf("uninstalling %s\n", softId);
+    public string uninstall(string softId) {
+        return "";
+        // return exec(@"yay -R \"$(softId)\" --noconfirm");
     }
 
     public List<Soft> installed() {
