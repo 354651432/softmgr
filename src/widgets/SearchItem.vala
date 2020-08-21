@@ -13,11 +13,9 @@ public class SearchItem : Gtk.Box {
         );
 
         modify_bg(Gtk.StateType.NORMAL, parseColor("#ffffff"));
-        var label = new Gtk.Label(soft.intro);
-        label.set_line_wrap(true);
-        label.set_line_wrap_mode(Pango.WrapMode.CHAR);
 
-        pack_start(label, false);
+        installButton.valign = Gtk.Align.START;
+        detailButton.valign = Gtk.Align.START;
         pack_end(installButton, false);
         pack_end(detailButton, false);
 
@@ -25,8 +23,32 @@ public class SearchItem : Gtk.Box {
             soft.install();
         });
         detailButton.clicked.connect(() => {
-            DetailDialog.showSoftDialog(soft);
+            var diloag = new DetailDialog(soft);
+            diloag.showInstallDetail();
         });
+
+        logo();
+        label();
+    }
+
+    void label() {
+        var hbox = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+        pack_start(hbox);
+        var label = new Gtk.Label(soft.intro);
+        label.set_line_wrap(true);
+        label.set_line_wrap_mode(Pango.WrapMode.CHAR);
+        label.halign = Gtk.Align.START;
+
+        var header = new Gtk.Label(soft.header);
+        header.halign = Gtk.Align.START;
+        hbox.pack_start(header);
+        hbox.pack_start(label, false);
+    }
+
+    void logo() {
+        var img = new Gtk.Image.from_icon_name("application-default-icon", Gtk.IconSize.DND);
+        img.margin = 10;
+        pack_start(img, false);
     }
 
     Gdk.Color parseColor(string spec) {

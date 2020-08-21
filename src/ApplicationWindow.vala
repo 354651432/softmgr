@@ -1,11 +1,25 @@
 public class ApplicationWindow : Gtk.ApplicationWindow {
+    Gtk.Dialog loading { set; get; }
     public ApplicationWindow(Gtk.Application app) {
         Object(application: app);
 
-        set_default_size(500, 300);
+        set_default_size(800, 600);
         set_position(Gtk.WindowPosition.CENTER);
 
         addTitleBar();
+        loading = new Gtk.Dialog();
+        loading.parent = this;
+        loading.set_size_request(300, 100);
+        loading.modal = true;
+    }
+
+    public void showLoaing(string message = "Loading") {
+        loading.get_content_area().add(new Gtk.Label(message));
+        loading.show_all();
+    }
+
+    public void closeLoaing() {
+        loading.hide();
     }
 
     void addTitleBar() {

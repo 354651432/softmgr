@@ -1,5 +1,6 @@
 public class Soft : Object {
     public string softId { set; get; }
+    public string header { set; get; }
     public string intro { set; get; }
     public Gee.HashMap<string, string> detail {
         owned get {
@@ -7,8 +8,14 @@ public class Soft : Object {
         }
     }
 
-    public Soft(string softId, string intro) {
-        Object(softId: softId, intro: intro);
+    public Gee.HashMap<string, string> installDetail {
+        owned get {
+            return controller.installDetail(softId);
+        }
+    }
+
+    public Soft(string softId, string intro, string header = "") {
+        Object(softId: softId, intro: intro, header: header);
     }
 
     public static IController controller { set; get; }

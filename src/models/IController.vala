@@ -6,4 +6,6 @@ public interface IController : Object {
     public abstract List<Soft> search(string keyword);
 
     public abstract Gee.HashMap<string, string> detail(string softId);
+
+    public abstract Gee.HashMap<string, string> installDetail(string softId);
 }

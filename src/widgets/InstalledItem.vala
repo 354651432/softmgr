@@ -19,7 +19,8 @@ public class InstalledItem : Gtk.Box {
 
         Gtk.Button detailBUtton = new Gtk.Button.from_icon_name("dialog-information");
         detailBUtton.clicked.connect(() => {
-            DetailDialog.showSoftDialog(soft);
+            var dialog = new DetailDialog(soft);
+            dialog.showInstallDetail();
         });
         pack_end(detailBUtton, false);
     }

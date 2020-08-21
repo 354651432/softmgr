@@ -41,7 +41,7 @@ public class YayController : Object, IController {
                 continue;
             }
             var name = arr1[0];
-            result.append(new Soft(name, arr[i + 1].strip()));
+            result.append(new Soft(name, arr[i + 1].strip(), arr[i]));
         }
 
         print("search result length:%u\n", result.length());
@@ -49,7 +49,18 @@ public class YayController : Object, IController {
     }
 
     public Gee.HashMap<string, string> detail(string softId) {
-        var output = exec(@"yay -Qi $(softId)");
+        return executeDetail(@"yay -Qi \"$(softId)\"");
+    }
+
+    public Gee.HashMap<string, string> installDetail(string softId) {
+        print("it called??");
+        return executeDetail(@"yay -Si \"$(softId)\"");
+    }
+
+    public Gee.HashMap<string, string> executeDetail(string cmd) {
+        var output = exec(cmd);
+        print(cmd);
+        print(output);
         Gee.HashMap<string, string> result = new Gee.HashMap<string, string>();
         var key = "";
         foreach (var line in output.split("\n")) {
